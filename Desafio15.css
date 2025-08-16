@@ -1,0 +1,48 @@
+:root{
+  --size: 72px;       
+  --main: #ff4d6d;    /* cor principal do ícone */
+  --duration: 1.25s;  /* duração de cada ciclo da animação */
+}
+
+body{
+  display:flex;                 
+  align-items:center;           
+  justify-content:center;       
+  min-height:100vh;             
+  margin:0;                    
+  background: #0f1724;        
+}
+
+/* Container do ícone */
+.pulse-icon{
+  position: relative;           
+  width: var(--size);           /* largura definida pela variável */
+  height: var(--size);          /* altura definida pela variável */
+  display:flex;                
+  align-items:center;           /* centraliza verticalmente o SVG */
+  justify-content:center;       /* centraliza horizontalmente o SVG */
+}
+
+/* O próprio ícone (SVG dentro do container) */
+.pulse-icon svg{
+  width: 68%;                   
+  height: 68%;                  
+  display:block;                /* remove espaço extra de imagens inline */
+  transform-origin: center;     /* ponto de origem da transformação no centro */
+  animation: pulse-scale var(--duration) ease-in-out infinite;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+}
+
+/* Animação de escala do ícone (pulso) */
+@keyframes pulse-scale {
+  0%   { transform: scale(1); }
+  55%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* Acessibilidade: respeita a preferência do usuário por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .pulse-icon svg {
+    animation: none !important;
+  }
+}
